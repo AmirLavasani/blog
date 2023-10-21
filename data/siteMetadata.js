@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Amir Lavaasni Portfolio and Blog',
   author: 'Amir Lavasani',
   headerTitle: 'Amir Lavasani',
-  description: 'My personal blog and portfolio to share my writings and projects.',
+  description: 'Writing about anything that fascinates me in the software and AI world.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://amirlavasani.vercel.app/',

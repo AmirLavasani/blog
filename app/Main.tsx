@@ -3,12 +3,37 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
+import Image from '@/components/Image'
 
 const MAX_DISPLAY = 5
 
 export default function Home({ posts }) {
   return (
     <>
+      <div className="mt-7 flex items-center justify-between space-y-4">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            <span className="wave">👋🏻</span>, <span>I'm </span>
+            <span className="text-sky-500 dark:text-sky-500">Amir Lavasani</span>
+          </h1>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Startup Builder | Full-Stack ML Engineer | AI SAAS Lover
+          </p>
+          <Link
+            href="/about"
+            className="mt-4 inline-block rounded bg-sky-400 px-4 py-2 font-bold text-white hover:bg-sky-600"
+          >
+            About Me
+          </Link>
+        </div>
+        <Image
+          src="/static/images/amirlavasani.jpg"
+          alt="avatar"
+          width={300}
+          height={300}
+          className="h-50 w-50 hidden rounded-full md:block"
+        />
+      </div>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
