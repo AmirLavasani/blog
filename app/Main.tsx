@@ -19,12 +19,20 @@ export default function Home({ posts }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             Startup Builder | Full-Stack ML Engineer | AI SAAS Lover
           </p>
-          <Link
-            href="/about"
-            className="mt-4 inline-block rounded bg-sky-400 px-4 py-2 font-bold text-white hover:bg-sky-600"
-          >
-            About Me
-          </Link>
+          <div className="flex flex-row gap-x-6">
+            <Link
+              href="/about"
+              className="mt-4 inline-block rounded bg-sky-400 px-4 py-2 font-bold text-white hover:bg-sky-500"
+            >
+              About Me
+            </Link>
+            <Link
+              href="/projects"
+              className="mt-4 inline-block rounded border-2 border-sky-300 bg-transparent px-4 py-2 font-bold text-gray-400 hover:border-sky-500 hover:text-gray-600 dark:text-white"
+            >
+              What I'v Done 💯
+            </Link>
+          </div>
         </div>
         <Image
           src="/static/images/amirlavasani.jpg"
