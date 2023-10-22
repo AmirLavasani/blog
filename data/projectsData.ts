@@ -20,7 +20,7 @@ const projectsData = [
     description: `Co-founded zap.dev, a dynamic and full-cycle web and mobile application development 
     company specializing in creating tailored solutions for startups and fast-growing companies.`,
     imgSrc: '/static/images/project_09.jpeg',
-    href: '/blog/the-time-machine',
+    href: 'https://zapdev.vercel.app',
   },
   {
     title: 'Cogneunce Startup',
@@ -44,7 +44,7 @@ const projectsData = [
     between speech, non-speech, and silence, trained on a 300-hour dataset, utilizing SVM, 
     and Scikit-Learn, achieving a 96\% accuracy rate.`,
     imgSrc: '/static/images/project_05.jpeg',
-    href: '/blog/the-time-machine',
+    href: 'https://www.linkedin.com/in/amir-lavasani/details/projects/',
   },
   {
     title: 'Designing and Implementing Farsava Speech Corpora Data Pipeline',
