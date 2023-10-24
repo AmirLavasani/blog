@@ -5,12 +5,17 @@ export const metadata = genPageMetadata({ title: 'Resume' })
 export default function Resume() {
   return (
     <>
-      <div className="mt-7 flex items-center justify-between space-y-4">
-        <div className="space-y-4">
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            <span className="text-sky-500 dark:text-sky-500">Here is my resume</span>
+            My Resume
           </h1>
-          <div className="flex flex-row gap-x-6">
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Here is my resume in PDF format.
+          </p>
+        </div>
+        <div className="container py-12">
+          <div className="-my-4 flex flex-wrap">
             <div>
               <a
                 href="/static/resume/Amir_Lavasani_Resume_2023_v1.0_FS.pdf"
