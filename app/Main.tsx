@@ -10,8 +10,8 @@ const MAX_DISPLAY = 5
 export default function Home({ posts }) {
   return (
     <>
-      <div className="mt-7 flex items-center justify-between space-y-4">
-        <div className="space-y-4">
+      <div className="mt-7 flex flex-col-reverse items-center justify-between gap-4 space-y-4 md:flex-row">
+        <div className="space-y-4 text-center md:text-left">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             <span className="wave">👋🏻</span>, <span>I'm </span>
             <span className="text-sky-500 dark:text-sky-500">Amir Lavasani</span>
@@ -19,7 +19,7 @@ export default function Home({ posts }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             Startup Builder | Full-Stack ML Engineer | AI SAAS Lover
           </p>
-          <div className="flex flex-row gap-x-6">
+          <div className="flex flex-row justify-center gap-x-6 md:justify-normal">
             <Link
               href="/about"
               className="mt-4 inline-block rounded bg-sky-400 px-4 py-2 font-bold text-white hover:bg-sky-500"
@@ -37,11 +37,12 @@ export default function Home({ posts }) {
         <Image
           src="/static/images/amirlavasani.jpg"
           alt="avatar"
-          width={300}
-          height={300}
-          className="h-50 w-50 hidden rounded-full md:block"
+          width={288}
+          height={288}
+          className="h-48 w-48 rounded-full md:h-72 md:w-72"
         />
       </div>
+      <br />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
