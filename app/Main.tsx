@@ -59,7 +59,7 @@ export default function Home({ posts }) {
               <li key={slug} className="py-12">
                 <article>
                   <div className="flex flex-col gap-8 space-y-2 lg:flex-row xl:flex-row">
-                    <div className="basis-1/4 self-center hidden lg:block">
+                    <div className="hidden basis-1/4 self-center lg:block">
                       <Link href={`/blog/${slug}`}>
                         <Image
                           alt={title}
