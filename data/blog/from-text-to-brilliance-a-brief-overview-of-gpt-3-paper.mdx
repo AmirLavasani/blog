@@ -55,9 +55,12 @@ models' performance relative to GPT-3.
   ![aggregate performance](/static/images/gpt3-summary/gpt3-aggregate-performance.jpg)
 </p>
 
-Presents aggregate performance for 42 accuracy-based benchmarks. It indicates that as the model size
-increases, zero-shot performance improves steadily. Notably, few-shot performance experiences more
-rapid enhancement, showcasing the heightened proficiency of larger models in in-context learning
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  Presents aggregate performance for 42 accuracy-based benchmarks. It indicates that as the model
+  size increases, zero-shot performance improves steadily. Notably, few-shot performance experiences
+  more rapid enhancement, showcasing the heightened proficiency of larger models in in-context
+  learning
+</p>
 
 # Approach
 
@@ -72,6 +75,11 @@ setting offers unique advantages and challenges for evaluating language model ca
 
 <p align="center">![fine-tuning](/static/images/gpt3-summary/fine-tuning.jpg)</p>
 
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  Contrasts traditional fine-tuning with zero-shot, one-shot, and few-shot methods for language
+  model tasks. The study focuses on the latter three methods.
+</p>
+
 # Model and Architectures
 
 The study employs the same model and architecture as GPT-2 with specific modifications, including
@@ -81,6 +89,11 @@ table displays key architectural details of these models, and efficient GPU part
 are employed.
 
 <p align="center">![model-architecture](/static/images/gpt3-summary/model.png)</p>
+
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  Sizes, architectures, and learning hyper-parameters (batch size in tokens and learning rate) of
+  the models which we trained. All models were trained for a total of 300 billion tokens.
+</p>
 
 # Training Dataset
 
@@ -92,6 +105,12 @@ the document level, and (3) adding reputable reference corpora to augment the tr
 
 <p align="center">![total-compute](/static/images/gpt3-summary/total-compute.jpg)</p>
 
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  The study employed significantly larger models trained on fewer tokens compared to typical
+  practices. For instance, despite GPT-3 3B being nearly 10 times larger than RoBERTa-Large (355M
+  params), both models required around 50 petaflop/s-days of compute during pre-training.
+</p>
+
 The training dataset mixture used in the study includes CommonCrawl data from 2016 to 2019, covering
 45TB of compressed plaintext before filtering and 570GB after filtering, equivalent to about 400
 billion byte-pair-encoded tokens. Datasets were sampled based on perceived quality, with
@@ -100,6 +119,13 @@ downstream tasks by removing overlaps with development and test sets of benchmar
 overlaps remained due to a filtering bug.
 
 <p align="center">![training-dataset](/static/images/gpt3-summary/training-dataset.png)</p>
+
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  The training datasets for GPT-3 were selected using a non-proportional distribution strategy,
+  where the fraction of examples from each dataset during training doesn't strictly reflect the
+  dataset's size. This approach aimed to ensure that certain quality datasets are seen multiple
+  times during training, while others are encountered less frequently.
+</p>
 
 # Training Process
 
@@ -128,4 +154,12 @@ Evaluation is conducted in few-shot, one-shot, and zero-shot settings for variou
 
 <p align="center">![results](/static/images/gpt3-summary/results.png)</p>
 
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  The relationship between performance, measured through cross-entropy validation loss, and training
+  compute exhibits a smooth power-law trend. This trend, seen in previous work, extends over two
+  more orders of magnitude with minor deviations from the expected curve.
+</p>
+
 Hope you enjoyed 👏
+
+Here is the [original paper](https://arxiv.org/abs/2005.14165) if you want to dive deeper.
