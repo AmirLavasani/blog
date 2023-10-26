@@ -1,0 +1,100 @@
+---
+title: "Beyond Speech Recognition: OpenAI's Whisper"
+date: '2023-10-26'
+lastmod: '2023-10-26'
+tags: ['OpenAI', 'Deep Learning', 'ASR', 'Paper']
+draft: false
+summary: "This article delves into the extraordinary capabilities of Whisper as presented in OpenAI's paper: Robust Speech Recognition via Large-Scale Weak Supervision."
+authors: ['default']
+image: '/static/images/project_08.jpeg'
+---
+
+In the dynamic field of speech recognition, OpenAI introduces Whisper, a pioneering system poised to revolutionize the way we perceive voice technology. This article delves into the extraordinary capabilities of Whisper as presented in OpenAI's paper, "Robust Speech Recognition via Large-Scale Weak Supervision."
+
+<TOCInline toc={props.toc} />
+
+
+# Introduction
+
+Historically, speech recognition heavily relied on supervised pre-training, demanding extensive human data labeling. However, the landscape has shifted with the advent of unsupervised pre-training methods, exemplified by Wav2Vec 2.0. These approaches, which leverage extensive unlabeled speech data, have transformed the scale and efficiency of speech recognition.
+
+Whisper takes this transformation further. Trained on an astounding **680,000 hours** of multilingual and multitask data, it excels on standard benchmarks without laborious fine-tuning. The results are remarkable, with Whisper's models nearing human-level accuracy and robustness.
+
+Implications are profound. Whisper signifies a future where speech recognition systems work seamlessly across diverse environments without the need for extensive supervised fine-tuning.
+
+This journey explores Whisper's technological marvel, its unprecedented data scale, multilingual and multitask abilities, and the potential it holds for robust speech recognition. Join us as we delve into the heart of Whisper, a transformative force redefining speech recognition boundaries. Whisper is a testament to technology's boundless potential.
+
+
+# Approach
+
+In the pursuit of crafting a transformative speech recognition system, OpenAI's Whisper takes a unique approach, standing on the shoulders of recent trends in machine learning. Central to this approach is data processing, where Whisper distinguishes itself through its minimalist methodology.
+
+Whisper's approach to speech recognition is marked by its minimalist data processing methods. Unlike traditional approaches, it trains models to predict raw transcripts without extensive standardization. This simplifies the speech recognition pipeline.
+
+The dataset is constructed from a diverse range of audio paired with transcripts found on the internet. To enhance transcript quality, automated filtering methods are employed.
+
+To avoid machine-generated transcripts, heuristics are used. An audio language detector ensures spoken and transcript languages match. Fuzzy de-duplication minimizes repetition and auto-generated content.
+
+Audio is segmented into 30-second pieces, paired with corresponding transcript sections. An additional filtering pass is conducted, identifying and removing low-quality data sources.
+
+Transcript-level de-duplication prevents contamination. These streamlined processes form the core of Whisper's remarkable speech recognition capabilities.
+
+
+# Model
+
+OpenAI's approach focuses on harnessing the capabilities of large-scale supervised pre-training for speech recognition. In this pursuit, they employ an off-the-shelf architecture, opting for an encoder-decoder Transformer, a well-validated and scalable structure. All audio data is re-sampled to 16,000 Hz, and 80-channel log-magnitude Mel spectrogram representations are computed on 25-millisecond windows with a 10-millisecond stride. Feature normalization scales the input globally between -1 and 1, with an approximate zero mean across the pre-training dataset.
+
+The encoder handles this input representation and consists of a small stem with two convolution layers, utilizing the GELU activation function. Sinusoidal position embeddings are added to the output of the stem, followed by the application of transformer blocks. The transformer employs pre-activation residual blocks, and a final layer normalization is applied to the encoder output. The decoder uses learned position embeddings and tied input-output token representations, with the encoder and decoder sharing the same width and number of transformer blocks. The model architecture is summarized in Figure 1.
+
+The same byte-level Byte-Pair Encoding (BPE) text tokenizer used in GPT-2 is employed for the English-only models. For multilingual models, the vocabulary is refit to avoid fragmentation while maintaining the same size.
+
+### Multitask Format
+In speech recognition, multiple components like voice activity detection, speaker diarization, and text normalization accompany word prediction, creating complexity. OpenAI simplifies this by aiming for a single model to handle the full speech processing pipeline.
+
+They employ a streamlined format for task specification, using input tokens to guide the decoder. This format enables language prediction, task definition (transcription or translation), and timestamp predictions. It simplifies complex tasks by allowing a single model to address diverse requirements. Refer to Figure 1 for a visual representation of this format and the training setup.
+
+<img alt='openai-whisper-model-architecture' style={{ textAlign: 'center', borderRadius: '12px'}} src='/static/images/whisper-summary/model-architecture.jpg' />
+
+<p style={{ textAlign: 'center', fontStyle: 'italic'}}>
+  Whisper's sequence-to-sequence Transformer model. It's trained for various speech tasks like recognition, translation, identification, and activity detection. These tasks are represented as tokens for the decoder, simplifying the speech processing pipeline with one model.
+</p>
+
+# Training Details
+
+OpenAI investigates Whisper's scalability with various model sizes (see Table 1). Training employs data parallelism, FP16, dynamic loss scaling, and activation checkpointing. AdamW and gradient norm clipping are used with a linear learning rate decay. The batch size is 256 segments, and training comprises 220 updates, balancing between two and three passes over the dataset. Overfitting concerns are minimal, and no data augmentation or regularization is applied, relying on dataset diversity for generalization and robustness. For detailed training hyperparameters, see original paper's Appendix F.
+
+During initial development, models exhibited a tendency to incorrectly predict speaker names due to their prevalence in training transcripts. To address this, models are briefly fine-tuned on transcripts without speaker annotations, eliminating this behavior.
+
+
+
+row   | Model   | Layers| Width | Heads | Parameters |
+----  | ------- | ----- | ----- | ----- | -----      |
+1     | Tiny    | 4     | 384   | 6     | 39M        |
+2     | Base    | 6     | 512   | 8     | 74M        |   
+3     | Small   | 12    | 768   | 12    | 244M       |
+4     | Medium  | 24    | 1024  | 16    | 769M       |
+5     | Large   | 32    | 1280  | 20    | 1550M      |
+
+<p style={{textAlign: "center", fontStyle: "italic"}}>Table 1. Architecture details of the Whisper model family</p>
+<br/>
+
+# Experiments
+
+### Zero-shot Evaluation
+
+Whisper's primary aim is to create a robust speech processing system capable of performing well in diverse scenarios without the need for dataset-specific fine-tuning. To put Whisper to the ultimate test, the evaluation follows a zero-shot approach. This means that for each dataset, Whisper refrains from using any of the training data during evaluation, providing insight into its broad generalization capabilities.
+
+
+### Evaluation Metrics
+
+In speech recognition, systems are commonly assessed using the Word Error Rate (WER), which penalizes even minor differences, such as formatting variations. This poses a unique challenge for zero-shot models like Whisper.
+
+Whisper addresses this challenge by applying text standardization before calculating WER. This process reduces WER significantly, with up to a 50% improvement for some datasets. However, it's important to note the potential risk of overfitting to Whisper's transcription style.
+
+To support the community, Whisper provides its text normalizer [code](https://github.com/openai/whisper), facilitating comparisons and the study of speech recognition system performance in out-of-distribution contexts.
+
+
+
+
+
+Hope you enjoyed 👏
