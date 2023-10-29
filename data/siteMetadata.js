@@ -10,7 +10,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/AmirLavasani/blog',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
-  mastodon: 'https://mastodon.social/@mastodonuser',
+  // mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'amirm.lavasani@gmail.com',
   github: 'https://github.com/AmirLavasani',
   twitter: 'https://twitter.com/AmirMLavasani',
