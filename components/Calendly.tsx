@@ -22,19 +22,18 @@ function CalendlyWidget({ url }) {
   }
 
   return (
-      <InlineWidget
-        url={url} 
-        styles={{height: '750px', minWidth: '320px', backgroundColor: 'inherit'}}
-        // pageSettings={{
-        //   backgroundColor: '1c1e21',
-        //   hideEventTypeDetails: false,
-        //   hideLandingPageDetails: false,
-        //   primaryColor: '00a2ff',
-        //   textColor: 'f8f8f8'
-        // }}
-      />
+    <InlineWidget
+      url={url}
+      styles={{ height: '750px', minWidth: '320px' }}
+      // pageSettings={{
+      //   backgroundColor: '1c1e21',
+      //   hideEventTypeDetails: false,
+      //   hideLandingPageDetails: false,
+      //   primaryColor: '00a2ff',
+      //   textColor: 'f8f8f8'
+      // }}
+    />
   )
-            
 }
 
-export default CalendlyWidget;
+export default CalendlyWidget
