@@ -4,120 +4,159 @@ date: '2023-10-24'
 lastmod: '2018-06-12'
 tags: ['ASR', 'Deep Learning', 'Thesis', 'FarsAva']
 draft: false
-summary: 'Automatic speech recognition has made remarkable strides in recent years, thanks to advances in deep learning and the abundance of speech data.'
+summary:
+  'Automatic speech recognition has made remarkable strides in recent years, thanks to advances in
+  deep learning and the abundance of speech data.'
 authors: ['default']
 image: '/static/images/project_03.jpeg'
 ---
 
-Automatic speech recognition has made remarkable strides in recent years, thanks to advances in deep learning and the abundance of speech data. However, most speech recognition systems are still designed for major languages like English, while less prevalent languages are often overlooked. In my master’s thesis, I sought to develop a speech recognition system tailored specifically for the Persian language by leveraging deep neural networks.
+Automatic speech recognition has made remarkable strides in recent years, thanks to advances in deep
+learning and the abundance of speech data. However, most speech recognition systems are still
+designed for major languages like English, while less prevalent languages are often overlooked. In
+my master’s thesis, I sought to develop a speech recognition system tailored specifically for the
+Persian language by leveraging deep neural networks.
 
 <TOCInline toc={props.toc} exclude="Introduction" />
 
 # The Significance of Persian Speech Recognition
-The ability to automatically transcribe speech into text can immensely enhance how we interact with devices and systems. Yet Persian speakers have largely lacked access to robust speech interfaces due to limited progress on Persian speech recognition. My goal was to help bridge this gap by designing a system capable of recognizing conversational and continuous Persian speech.
 
-Beyond facilitating voice-based interactions, my hope is that the research will encourage more efforts on underserved languages and make speech recognition accessible to millions of Persian speakers worldwide.
+The ability to automatically transcribe speech into text can immensely enhance how we interact with
+devices and systems. Yet Persian speakers have largely lacked access to robust speech interfaces due
+to limited progress on Persian speech recognition. My goal was to help bridge this gap by designing
+a system capable of recognizing conversational and continuous Persian speech.
+
+Beyond facilitating voice-based interactions, my hope is that the research will encourage more
+efforts on underserved languages and make speech recognition accessible to millions of Persian
+speakers worldwide.
 
 Probabilistic equation of speech recognition problem:
-<p style={{textAlign: "center"}}>$\ argmax_w P(W|O) = argmax_w P(O|W)P(W)$</p>
-<br/>
+
+<p style={{ textAlign: 'center' }}>$\ argmax_w P(W|O) = argmax_w P(O|W)P(W)$</p>
+<br />
 
 # Constructing the FarsAva Persian Speech Dataset
-A fundamental requirement for training speech recognition systems is extensive audio data in the target language. Unfortunately, publicly available Persian speech data has been scarce and insufficient.
 
-To overcome this limitation, I undertook the ambitious task of compiling the FarsAva speech corpus. Meticulously gathered from diverse sources, this dataset encompasses over 5000 hours of Persian speech data from more than 6000 speakers. The diversity in topics, accents, environments, and conversational styles empowers this dataset to capture the breadth of variations in spoken Persian.
+A fundamental requirement for training speech recognition systems is extensive audio data in the
+target language. Unfortunately, publicly available Persian speech data has been scarce and
+insufficient.
 
-The development of FarsAva dataset has been a major contribution of my thesis, providing a valuable resource for future research on Persian speech processing.
+To overcome this limitation, I undertook the ambitious task of compiling the FarsAva speech corpus.
+Meticulously gathered from diverse sources, this dataset encompasses over 5000 hours of Persian
+speech data from more than 6000 speakers. The diversity in topics, accents, environments, and
+conversational styles empowers this dataset to capture the breadth of variations in spoken Persian.
 
-<br/>
-<p style={{textAlign: "center", fontStyle: "italic"}}>General statistics of Farsava speech dataset</p>
-row   | Characteristics                                     | Amount        |
-----  | -----------                                         | -----------   |
-1     | Dataset Volume in Hours                             | 5,160 Hours    |
-2     | Number of Spearkers                                 | 6,320 Speaker  |
-3     | Number of Speech Files                              | 3،798،814      |
-4     | Text Volume in Words Tokens                         | 17،786،578 Words |
-5     | Number of Speech Files Containing Background Noise  | 497،735        |
-6     | Number of Speech Files With Phone Quality           | 192،972        |
-7     | Speech Files Duration                               | 1 - 15 Seconds |
-8     | Average of Speech File Duration                     | 4.88 Seconds   |
+The development of FarsAva dataset has been a major contribution of my thesis, providing a valuable
+resource for future research on Persian speech processing.
 
-<br/>
-<p style={{textAlign: "center", fontStyle: "italic"}}>Statistics of Persian text corpus</p>
-row   | Characteristics                                     | Amount        |
-----  | -----------                                         | -----------   |
-1     | Volume in Gigabytes                                 | 6.8 GB        |
-2     | Number of Sentences                                 | 37,435,450    |
-3     | Number of Unique Words                              | 316,678       |
+<br />
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  General statistics of Farsava speech dataset
+</p>
+row | Characteristics | Amount | ---- | ----------- | ----------- | 1 | Dataset Volume in Hours |
+5,160 Hours | 2 | Number of Spearkers | 6,320 Speaker | 3 | Number of Speech Files | 3،798،814 | 4 |
+Text Volume in Words Tokens | 17،786،578 Words | 5 | Number of Speech Files Containing Background
+Noise | 497،735 | 6 | Number of Speech Files With Phone Quality | 192،972 | 7 | Speech Files
+Duration | 1 - 15 Seconds | 8 | Average of Speech File Duration | 4.88 Seconds |
 
-<br/>
+<br />
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>Statistics of Persian text corpus</p>
+row | Characteristics | Amount | ---- | ----------- | ----------- | 1 | Volume in Gigabytes | 6.8 GB
+| 2 | Number of Sentences | 37,435,450 | 3 | Number of Unique Words | 316,678 |
+
+<br />
 
 # Deep Neural Networks for Phonetic Modeling
-The core of any speech recognition system is the acoustic model, responsible for recognizing phonetic sounds based on the input audio. I explored various neural network architectures for this phonetic modeling task.
-Specifically, I implemented and evaluated three models:
+
+The core of any speech recognition system is the acoustic model, responsible for recognizing
+phonetic sounds based on the input audio. I explored various neural network architectures for this
+phonetic modeling task. Specifically, I implemented and evaluated three models:
 
 1. Gaussian Mixture Model - Hidden Markov Model (GMM/HMM)
 2. Deep Belief Network - Hidden Markov Model (DBN/HMM)
 3. Recurrent Neural Network with Long Short-Term Memory (RNN/LSTM)
 
-The GMM/HMM system acts as a baseline to compare improvements. The DBN/HMM employs deep belief networks for feature learning. Finally, the RNN/LSTM utilizes recurrent networks to capture temporal speech patterns.
+The GMM/HMM system acts as a baseline to compare improvements. The DBN/HMM employs deep belief
+networks for feature learning. Finally, the RNN/LSTM utilizes recurrent networks to capture temporal
+speech patterns.
 
 # Findings: RNNs Yield Substantial Improvements
-When tested on diverse Persian speech data, the deep neural network models demonstrated significant gains over the GMM/HMM baseline. Specifically, the RNN/LSTM model reduced the Word Error Rate (WER) by over 25% relative improvement across testing datasets.
 
-The volume of training data also exerted a notable impact. The RNN/LSTM model leveraged the abundance of data in FarsAva to continue improving accuracy, while the GMM and DBN models plateaued after hundreds of hours.
+When tested on diverse Persian speech data, the deep neural network models demonstrated significant
+gains over the GMM/HMM baseline. Specifically, the RNN/LSTM model reduced the Word Error Rate (WER)
+by over 25% relative improvement across testing datasets.
 
-<br/>
-<p style={{textAlign: "center", fontStyle: "italic"}}>
-    Word Error Rates on the Second Test Dataset (5000 hours of training data)
+The volume of training data also exerted a notable impact. The RNN/LSTM model leveraged the
+abundance of data in FarsAva to continue improving accuracy, while the GMM and DBN models plateaued
+after hundreds of hours.
+
+<br />
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  Word Error Rates on the Second Test Dataset (5000 hours of training data)
 </p>
-row   | Acoustic Model                                            | Word Error Rate (%)        |
-----  | -----------                                               | -----------   |
-1     | Gaussian Mixture Model - Hidden Markov Model (GMM - HMM)  | 33.4          |
-2     | Deep Belief Network - Hidden Markov Model (DBN - HMM)     | 24.1          |
-**3** | **Recurrent end-to-end Deep Neural Network Model (LSTM)** | **19.3**      |
-4     | Google Persian ASR                                        | 27.9          |
-5     | WIT Persian ASR                                           | 27.6          |
+row | Acoustic Model | Word Error Rate (%) | ---- | ----------- | ----------- | 1 | Gaussian Mixture
+Model - Hidden Markov Model (GMM - HMM) | 33.4 | 2 | Deep Belief Network - Hidden Markov Model (DBN
+- HMM) | 24.1 | **3** | **Recurrent end-to-end Deep Neural Network Model (LSTM)** | **19.3** | 4 |
+Google Persian ASR | 27.9 | 5 | WIT Persian ASR | 27.6 |
 
-
-Overall, the results highlighted the capabilities of deep neural networks for advancing speech recognition in Persian. The RNN/LSTM model achieved the lowest error rates, proving particularly adept at handling the nuances of the Persian language.
+Overall, the results highlighted the capabilities of deep neural networks for advancing speech
+recognition in Persian. The RNN/LSTM model achieved the lowest error rates, proving particularly
+adept at handling the nuances of the Persian language.
 
 <p align="center">
-![Overview of Word Error Rate on the second testing dataset](/static/images/asr-results-wer.png)
+  ![Overview of Word Error Rate on the second testing dataset](/static/images/asr-results-wer.png)
 </p>
 
 # Persian Language Modeling
-In addition to the acoustic model, I developed a Persian language model to estimate word sequences in the decoded speech output. After compiling a large Persian text corpus, I trained and evaluated N-gram language models with diverse smoothing techniques.
 
-The language model supplemented the acoustic model by applying Persian linguistic patterns to reconstruct probable word strings. Integrating the language model significantly boosted the speech recognition accuracy compared to solely relying on acoustics.
+In addition to the acoustic model, I developed a Persian language model to estimate word sequences
+in the decoded speech output. After compiling a large Persian text corpus, I trained and evaluated
+N-gram language models with diverse smoothing techniques.
 
-<br/>
-<p style={{textAlign: "center", fontStyle: "italic"}}>
-    Perplexity result on 5-gram Persian Language Model with Different Smoothing Methods
+The language model supplemented the acoustic model by applying Persian linguistic patterns to
+reconstruct probable word strings. Integrating the language model significantly boosted the speech
+recognition accuracy compared to solely relying on acoustics.
+
+<br />
+<p style={{ textAlign: 'center', fontStyle: 'italic' }}>
+  Perplexity result on 5-gram Persian Language Model with Different Smoothing Methods
 </p>
-row   | Language Model (5-gram)                         | Perplexity    |
-----  | -----------                                     | -----------   |
-1     | 5-gram (without pruning and smoothing)          | 69.52         |
-2     | 5-gram with Pruning                             | 138.61        |
-**3** | **5-gram with Kneser–Ney smoothing**            | **64.44**     |
-4     | 5-gram with Pruning and Kneser–Ney smoothing    | 171.91        |
-
-
+row | Language Model (5-gram) | Perplexity | ---- | ----------- | ----------- | 1 | 5-gram (without
+pruning and smoothing) | 69.52 | 2 | 5-gram with Pruning | 138.61 | **3** | **5-gram with Kneser–Ney
+smoothing** | **64.44** | 4 | 5-gram with Pruning and Kneser–Ney smoothing | 171.91 |
 
 # Key Technical Contributions
+
 Some of the key technical contributions from my thesis research include:
 
-- **FarsAva:** *Revolutionized Persian speech recognition accuracy by inventing FarsAva, an advanced LSTM-based ASR, using end-to-end Deep LSTMs, surpassing all previous models by an impressive absolute 14%.*
-- **FarsAva Dataset**: *Enhanced Persian speech corpus by 10x, overseeing the creation, cleaning, annotation, and verification of a vast dataset exceeding 5000 hours, compared to the previous 68-hour dataset.*
-- **Data Pipeline:** *Led the development of a robust data acquisition pipeline, including web audio data scraping, speech extraction and segmentation, data cleaning and normalization, and transcription and labeling, improving data collection speed by 2.5x.*
-- **Grapheme-to-Phoneme (G2P)**: *A transliteration system using RNNs to create phonetic dictionary with over 500,000 words.*
-- **Academic Results**: *Detailed evaluations illuminating the impact of training data size, model architecture, and language modeling on Persian speech recognition accuracy.*
+- **FarsAva:** _Revolutionized Persian speech recognition accuracy by inventing FarsAva, an advanced
+  LSTM-based ASR, using end-to-end Deep LSTMs, surpassing all previous models by an impressive
+  absolute 14%._
+- **FarsAva Dataset**: _Enhanced Persian speech corpus by 10x, overseeing the creation, cleaning,
+  annotation, and verification of a vast dataset exceeding 5000 hours, compared to the previous
+  68-hour dataset._
+- **Data Pipeline:** _Led the development of a robust data acquisition pipeline, including web audio
+  data scraping, speech extraction and segmentation, data cleaning and normalization, and
+  transcription and labeling, improving data collection speed by 2.5x._
+- **Grapheme-to-Phoneme (G2P)**: _A transliteration system using RNNs to create phonetic dictionary
+  with over 500,000 words._
+- **Academic Results**: _Detailed evaluations illuminating the impact of training data size, model
+  architecture, and language modeling on Persian speech recognition accuracy._
 
 # Conclusion
-This pioneering research endeavored to push the frontiers of speech technology for the Persian language. While plenty of opportunities remain for advancement, I hope these foundations spur further innovations in this domain.
 
-The capacity of deep learning models to capture linguistic nuances was convincingly demonstrated. But ultimately, language accessibility should remain the guiding light driving research - to create intelligent systems that understand and empower people regardless of background.
+This pioneering research endeavored to push the frontiers of speech technology for the Persian
+language. While plenty of opportunities remain for advancement, I hope these foundations spur
+further innovations in this domain.
 
-If you found this summary interesting, I encourage you to read the <a style={{textDecoration:"none"}} href="/static/files/2018_Amir_Lavasani_Master_Thesis_Persian_Large_Vocabulary_Continuous_Speech_Recognition_Using_Deep_Neural_Networks.pdf" target="_blank">full thesis (english)</a> to gain deeper insights into the models, datasets, and experiments. Please feel free to contact me if you have any other questions!
+The capacity of deep learning models to capture linguistic nuances was convincingly demonstrated.
+But ultimately, language accessibility should remain the guiding light driving research - to create
+intelligent systems that understand and empower people regardless of background.
+
+If you found this summary interesting, I encourage you to read the <a
+style={{textDecoration:"none"}}
+href="/static/files/2018_Amir_Lavasani_Master_Thesis_Persian_Large_Vocabulary_Continuous_Speech_Recognition_Using_Deep_Neural_Networks.pdf"
+target="\_blank">full thesis (english)</a> to gain deeper insights into the models, datasets, and
+experiments. Please feel free to contact me if you have any other questions!
 
 Hope you enjoyed 👏
