@@ -84,9 +84,12 @@ Fine-tuning, storing, deploying, and managing lots of fine-tuned models with the
 the same dimension as the original model is challenging if at all feasible on independent
 researchers' hardware.
 
-LoRA introduces a parameter-efficient approach, where the task-specific parameter increment $\Delta_{\phi} = \Delta_{\phi}\left( \theta \right)$ is further encoded by a much smaller-sized set of parameters $\theta$ with $\left| \Theta \right| \ll \left| \Phi_{0} \right|$.
+LoRA introduces a parameter-efficient approach, where the task-specific parameter increment
+$\Delta_{\phi} = \Delta_{\phi}\left( \theta \right)$ is further encoded by a much smaller-sized set
+of parameters $\theta$ with $\left| \Theta \right| \ll \left| \Phi_{0} \right|$.
 
-For the encoding of $\Delta_{\phi}$ LoRA proposes to use a low-rank representation that is both compute- and memory-efficient.
+For the encoding of $\Delta_{\phi}$ LoRA proposes to use a low-rank representation that is both
+compute- and memory-efficient.
 
 # Drawbacks of Existing Methods
 
